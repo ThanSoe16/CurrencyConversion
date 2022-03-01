@@ -23,7 +23,7 @@ class _ConverterState extends State<Converter> {
     // TODO: implement initState
     super.initState();
     Get.lazyPut(() => CurrencyListController());
-    Get.find<CurrencyListController>().getCurrencyList();
+    Get.find<CurrencyListController>().loadCurrencies();
   }
 
   @override

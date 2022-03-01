@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-void main() {
-  runApp(const MyApp());
-  configLoading();
-}
+
+  Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(MyApp());
+    configLoading();
+  }
 
   void configLoading() {
     EasyLoading.instance

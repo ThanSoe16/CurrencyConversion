@@ -12,21 +12,26 @@ class CurrencyListController extends GetxController{
   Future<String> loadCurrencies() async{
       var response = await Dio().get(Constants().apiUrl + Constants().typeList + Constants().textAccessKey + "=" + Constants().accessKey);
       Map curMap = response.data["currencies"];
-      String encodeMap = json.encode(curMap);
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString(Constants().currencyLists, encodeMap);
       items = curMap.keys.toList();
+
+      final prefs = await SharedPreferences.getInstance();
+      String encodeMap = json.encode(curMap);
+      prefs.setString(Constants().currencyLists, encodeMap);
+
       update();
-    return "Success";
+    return "success";
 
   }
 
-  getCurrencyList() async{
+  Future<String> getCurrencyList() async{
     final prefs = await SharedPreferences.getInstance();
     String? encodedMap = prefs.getString(Constants().currencyLists);
     Map curMap = json.decode(encodedMap!);
     items = curMap.keys.toList();
     update();
+    return "success";
+
+
 
   }
 
